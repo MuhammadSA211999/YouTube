@@ -1,15 +1,13 @@
-import { getVideos } from "./videosAPI";
-
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
     tags: [],
-    searched: ''
+    searchText: ''
 };
 
 
 const filterSlice = createSlice({
-    name: "videos",
+    name: "filter",
     initialState,
     reducers: {
         tagSelection: (state, action) => {
@@ -17,14 +15,14 @@ const filterSlice = createSlice({
         },
         tagRemove: (state, action) => {
             const tagIndex = state.tags.indexOf(action.payload)
-            //index num return korbe
+            //indexOf num return korbe
             if (tagIndex !== -1) {
                 //splice(5,1) 5 no index e taka value remove korbe
                 state.tags.splice(tagIndex, 1)
             }
         },
         searched: (state, action) => {
-            state.searched = action.payload
+            state.searchText = action.payload
         }
     }
 
